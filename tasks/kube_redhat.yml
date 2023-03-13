@@ -16,15 +16,19 @@
    state: permissive
 
 - name: Disable Firewalld
-   service:
+  service:
     name: firewalld
     state: stopped
 
 - name: Swapping Off
-  shell: swapoff -a &&exit
+  shell: | 
+    swapoff -a
+    exit 0
 
 - name: making the SELinux change persistent across reboots
-  shell: sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config &&exit
+  shell: |
+    sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+    exit 0
 
 - name: Install Kubeadm
   yum:
