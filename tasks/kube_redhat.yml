@@ -1,7 +1,7 @@
 - name: Adding Kubernetes repo
   yum_repository:
     name: Kubernetes
-    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
     enabled: 1
     gpgcheck: 1
     gpgkey: 
