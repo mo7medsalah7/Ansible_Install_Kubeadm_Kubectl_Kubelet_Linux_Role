@@ -15,21 +15,26 @@
 - name: Put SELinux in permissive mode
   ansible.posix.selinux:
    state: permissive
+   policy: targeted
+
+
+- name: making the SELinux change persistent across reboots
+  shell: |
+    sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+    exit 0
 
 - name: Disable Firewalld
   service:
     name: firewalld
     state: stopped
 
+
+
 - name: Swapping Off
   shell: | 
     swapoff -a
     exit 0
 
-- name: making the SELinux change persistent across reboots
-  shell: |
-    sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
-    exit 0
 
 - name: Install Kubeadm
   yum:
