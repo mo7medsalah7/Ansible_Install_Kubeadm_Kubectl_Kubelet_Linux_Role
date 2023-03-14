@@ -40,7 +40,7 @@
   yum:
     name: ['kubelet', 'kubeadm', 'kubectl']
     state: present
-    disable_excludes: kubernetes
+    disable_excludes: all
 
 - name: Start service kubelet
   service:
